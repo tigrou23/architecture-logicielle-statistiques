@@ -9,7 +9,7 @@ import numpy as np
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
-st.title("Statistiques sur la bibliothèque \U0001F4D6")
+st.title("Statistiques de la médiathèque \U0001F4D6")
 
 tab_titles = [
     "Réservations",
