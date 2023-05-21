@@ -63,7 +63,7 @@ with tabs[0]:
     st.markdown("## Répartition des des âges")
     aujourdhui = pd.Timestamp.today().normalize()  # Récupérer la date d'aujourd'hui
     df_reservation['DateNais'] = pd.to_datetime(df_reservation['DateNais'])
-    df_reservation['Age'] = df_reservation['DateNais'].apply(lambda x: relativedelta(aujourdhui, x).years)
+    df_reservation['Age'] = pd.Timestamp.now().year - df_reservation['DateNais'].dt.year
     nombre_adultes = df_reservation[df_reservation['Age'] >= 18].shape[0]
     nombre_enfants = df_reservation[df_reservation['Age'] < 18].shape[0]
     labels = ['Adultes', 'Enfants']
@@ -90,7 +90,7 @@ with tabs[1]:
     st.markdown("## Répartition des âges")
     aujourdhui = pd.Timestamp.today().normalize()  # Récupérer la date d'aujourd'hui
     df_emprunt['DateNais'] = pd.to_datetime(df_emprunt['DateNais'])
-    df_emprunt['Age'] = df_emprunt['DateNais'].apply(lambda x: relativedelta(aujourdhui, x).years)
+    df_emprunt['Age'] = pd.Timestamp.now().year - df_emprunt['DateNais'].dt.year
     nombre_adultes = df_emprunt[df_emprunt['Age'] >= 18].shape[0]
     nombre_enfants = df_emprunt[df_emprunt['Age'] < 18].shape[0]
     labels = ['Adultes', 'Enfants']
