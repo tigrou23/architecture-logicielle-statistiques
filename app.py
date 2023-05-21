@@ -9,6 +9,7 @@ import numpy as np
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 
+st.title("Statistiques sur la bibliothèque \U0001F4D6")
 
 tab_titles = [
     "Réservations",
@@ -46,13 +47,12 @@ warnings.filterwarnings('default')
 conn.close()
 
 with tabs[0]:
-    st.title("Réservations")
     
     st.markdown("## Données générales")
     documentLePlusUtilise = df_reservation['titre'].mode()[0]
     col1, col2 = st.columns(2)
-    col1.metric("Nombre de réservation effectuées : ", str(df_reservation.size), '4%')
-    col2.metric("Document le plus réservé", documentLePlusUtilise)
+    col1.metric("Nombre de réservations effectuées : ", str(df_reservation.size), '4%')
+    col2.metric("Document le plus réservé : ", documentLePlusUtilise)
 
     st.markdown("## Histogramme des réservations")
     st.markdown('- axe x : Titre des documents')
@@ -74,13 +74,12 @@ with tabs[0]:
     st.pyplot(fig1)
 
 with tabs[1]:
-    st.title("Emprunts")
         
     st.markdown("## Données générales")
     documentLePlusUtilise = df_emprunt['titre'].mode()[0]
     col1, col2 = st.columns(2)
     col1.metric("Nombre d'emprunts effectuées : ", str(df_emprunt.size), '-10%')
-    col2.metric("Document le plus emprunté", documentLePlusUtilise)
+    col2.metric("Document le plus emprunté : ", documentLePlusUtilise)
 
     st.markdown("## Histogramme des emprunts")
     st.markdown('- axe x : Titre des documents')
