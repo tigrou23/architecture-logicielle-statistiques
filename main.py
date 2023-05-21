@@ -7,6 +7,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
 
 
 tab_titles = [
@@ -62,7 +63,7 @@ with tabs[0]:
     st.markdown("## Répartition des des âges")
     aujourdhui = pd.Timestamp.today().normalize()  # Récupérer la date d'aujourd'hui
     df_reservation['DateNais'] = pd.to_datetime(df_reservation['DateNais'])
-    df_reservation['Age'] = (aujourdhui - df_reservation['DateNais']).dt.days // 365
+    df_reservation['Age'] = df_reservation['DateNais'].apply(lambda x: relativedelta(aujourdhui, x).years)
     nombre_adultes = df_reservation[df_reservation['Age'] >= 18].shape[0]
     nombre_enfants = df_reservation[df_reservation['Age'] < 18].shape[0]
     labels = ['Adultes', 'Enfants']
@@ -89,7 +90,7 @@ with tabs[1]:
     st.markdown("## Répartition des âges")
     aujourdhui = pd.Timestamp.today().normalize()  # Récupérer la date d'aujourd'hui
     df_emprunt['DateNais'] = pd.to_datetime(df_emprunt['DateNais'])
-    df_emprunt['Age'] = (aujourdhui - df_emprunt['DateNais']).dt.days // 365
+    df_emprunt['Age'] = df_emprunt['DateNais'].apply(lambda x: relativedelta(aujourdhui, x).years)
     nombre_adultes = df_emprunt[df_emprunt['Age'] >= 18].shape[0]
     nombre_enfants = df_emprunt[df_emprunt['Age'] < 18].shape[0]
     labels = ['Adultes', 'Enfants']

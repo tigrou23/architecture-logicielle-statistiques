@@ -6,3 +6,4 @@ streamlit
 matplotlib
 numpy
 DateTime
+python-dateutil
