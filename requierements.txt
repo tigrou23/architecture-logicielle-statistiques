@@ -4,3 +4,5 @@ pytest-warnings
 python-dotenv
 streamlit
 matplotlib
+numpy
+DateTime
